@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, FormGroup, Label } from 'semantic-ui-react';
+import { Form, FormGroup } from 'semantic-ui-react';
 import { StyledForm } from './Styled';
 
 const EmployeeForm = () => { 
