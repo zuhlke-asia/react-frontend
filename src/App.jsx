@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Card from './components/Card';
+import Form from './components/Form';
 
 const data = [
   { fn: 'foo1', ln: 'bar1', id: 1 },
@@ -14,13 +15,16 @@ const App = () => (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
     </header>
+  <Form></Form>
+    <hr />
+
     {
       data.map((person) => {
-        console.log('person:', person);
         return (
           <Card key={person.id} person={person} />
         );
       })
+
     }
   </div>
 );
