@@ -11,15 +11,13 @@ const EmployeeForm = () => {
           <Form.Input fluid label="Last name" placeholder="Last name" />
         </FormGroup>
         <Form.Field>
-          <label>Address</label>
-          <input />
+          <Form.Input fluid label="Address" placeholder="Address" />
         </Form.Field>
-       
-       
-        <FormGroup>
-          <Form.Input fluid label="Email Address" placeholder="Email Address" />
-          <Form.Input fluid label="Phone Number" placeholder="Phone Number" />
+        <FormGroup widths="equal">
+          <Form.Input label="Email Address" placeholder="Email Address" />
+          <Form.Input label="Phone Number" placeholder="Phone Number" />
         </FormGroup>
+        <Form.Button fluid>Submit</Form.Button>
       </Form>
     </StyledForm>
 

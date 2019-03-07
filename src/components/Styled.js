@@ -10,8 +10,9 @@ export const StyledCard = styled.div`
 
 export const StyledForm = styled.div`
   padding: 30px;
-  text-align: center;
-  float: center;
-  align-items: center;
-  justify-content: center;
+  text-align: left;
+
+  .ui.button {
+    font-style: italic;
+  }
 `;
