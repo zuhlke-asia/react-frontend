@@ -9,7 +9,7 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledForm = styled.div`
-  height: 20vh;
+  padding: 30px;
   text-align: center;
   float: center;
   align-items: center;

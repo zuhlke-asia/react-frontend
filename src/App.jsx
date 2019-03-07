@@ -1,8 +1,10 @@
 import React from 'react';
+import { Divider, CardGroup } from 'semantic-ui-react';
+import EmployeeCard from './components/Card';
+import Form from './components/Form';
 import logo from './logo.svg';
 import './App.css';
-import Card from './components/Card';
-import Form from './components/Form';
+
 
 const data = [
   { fn: 'foo1', ln: 'bar1', id: 1 },
@@ -15,17 +17,21 @@ const App = () => (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
     </header>
-  <Form></Form>
-    <hr />
+    <Form />
+    <Divider horizontal>Employees</Divider>
+    <CardGroup>
 
-    {
-      data.map((person) => {
-        return (
-          <Card key={person.id} person={person} />
-        );
-      })
+      {
+        data.map((person) => {
+          return (
+            <EmployeeCard key={person.id} person={person} />
+          );
+        })
 
-    }
+      }
+
+    </CardGroup>
+
   </div>
 );
 
