@@ -1,18 +1,17 @@
 import React from 'react';
-// import { StyledCard } from './Styled';
-import { Card, CardHeader, CardContent } from 'semantic-ui-react';
+import { Card, CardContent, CardHeader } from 'semantic-ui-react';
 
 const EmployeeCard = (props) => {
   const { person } = props;
-  const { fn, ln } = person;
+  const { firstName, lastName, address, email, phone } = person;
 
   return (
     <Card>
-      <CardHeader>{`${fn} ${ln}`}</CardHeader>
+      <CardHeader>{`${firstName} ${lastName}`}</CardHeader>
       <CardContent>
-        <div>Address: </div>
-        <div>Email: </div>
-        <div>Phone: </div>
+        <div>Address: {address}</div>
+        <div>Email: {email}</div>
+        <div>Phone: {phone}</div>
 
       </CardContent>
 

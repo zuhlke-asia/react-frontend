@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup } from 'semantic-ui-react';
 import { StyledForm } from './Styled';
+import apiWrapper from '../apiwrapper';
 
 const EmployeeForm = () => {
   const [fn, setfn] = useState('');
@@ -25,8 +26,13 @@ const EmployeeForm = () => {
       email: emailAdd,
       phone: phoneNum,
     };
-
-    console.log(JSON.stringify(employee));
+    apiWrapper.post('/employee', employee)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const inputHandler = (evt, obj) => {

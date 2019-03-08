@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Divider, CardGroup } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import Form from './components/Form';
@@ -6,18 +6,23 @@ import logo from './logo.svg';
 import apiWrapper from './apiwrapper';
 import './App.css';
 
+const getPersons = apiWrapper.get('/employee');
 
 const App = () => {
-  let persons = [];
+  const [persons, setPersons] = useState([]);
 
-  apiWrapper.get('/employee')
-    .then((res) => {
-      persons = res.data;
-      console.log(persons);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const getAllPersons = async () => {
+    await getPersons
+      .then((res) => {
+        console.log(res.data);
+        setPersons(res.data.content);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => { getAllPersons(); }, []);
 
   return (
     <div className="App">
@@ -28,13 +33,13 @@ const App = () => {
       <Divider horizontal>Employees</Divider>
       <CardGroup>
         {
-
-         persons.map((person) => {
-           return (
-             <EmployeeCard key={person.id} person={person} />
-           );
-         })
-
+          persons.map((person) => {
+            console.log('person');
+            console.log(person);
+            return (
+              <EmployeeCard key={person.id} person={person} />
+            );
+          })
         }
 
       </CardGroup>
