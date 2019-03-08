@@ -18,6 +18,7 @@ const EmployeeForm = () => {
     phoneInput: setPhone,
   };
 
+  // to refactor out of Form component
   const handleSubmit = () => {
     const employee = {
       firstName: fn,

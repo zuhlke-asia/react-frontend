@@ -11,4 +11,8 @@ instance.interceptors.request.use(function (config) {
     return Promise.reject(error);
   });
 
+  
+const getAllEmployees = instance.get('/employee');
+
+
 export default instance;
