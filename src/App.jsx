@@ -3,16 +3,15 @@ import { Divider, CardGroup } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import Form from './components/Form';
 import logo from './logo.svg';
-import apiWrapper from './apiwrapper';
 import './App.css';
+import { getEmployees, addEmployee } from './API/APICalls';
 
-const getPersons = apiWrapper.get('/employee');
 
 const App = () => {
   const [persons, setPersons] = useState([]);
 
   const getAllPersons = async () => {
-    await getPersons
+    await getEmployees
       .then((res) => {
         console.log(res.data);
         setPersons(res.data.content);
