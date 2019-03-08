@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
 jobs:
   build:
     working_directory: ~/repo
@@ -16,5 +18,13 @@ jobs:
           paths:
             - /home/circleci/.npm
       - run:
-          name: Run Tests
+          name: Test
           command: npm test
+workflows:
+  version: 2.1
+  build-test:
+    jobs:
+      - build
+      - cypress/run:
+          record: true
+          start: 'npm start'

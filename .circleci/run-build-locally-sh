@@ -1,0 +1,6 @@
+curl --user 74816d2ce8b68628808b9e0fcdb1a32a3b950bfd: \
+    --request POST \
+    --form revision=<commit hash>\
+    --form config=@config.yml \
+    --form notify=false \
+        https://circleci.com/api/v1.1/project/github/zuhlke-training/react-frontend/tree/cypress-config
