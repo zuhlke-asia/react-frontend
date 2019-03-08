@@ -3,7 +3,6 @@ import { Divider, CardGroup } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import Form from './components/Form';
 import logo from './logo.svg';
-import apiWrapper from './apiwrapper';
 import './App.css';
 import { getEmployees } from './API/APICalls';
 

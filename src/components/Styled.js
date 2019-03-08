@@ -9,7 +9,7 @@ export const StyledCard = styled.div`
 `;
 
 export const StyledForm = styled.div`
-  padding: 30px;
+  padding: 20vh;
   text-align: left;
 
   .ui.button {
