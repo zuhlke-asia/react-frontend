@@ -34,7 +34,7 @@ describe('Home Page Renders', () => {
   });
 
   it('Submit button is visible', () => {
-    cy.get('button')
+    cy.get('input')
       .contains('Submit')
       .should('be.visible');
   });
