@@ -4,7 +4,7 @@ import EmployeeCard from './components/Card';
 import Form from './components/Form';
 import logo from './logo.svg';
 import './App.css';
-import { getEmployees, addEmployee } from './API/APICalls';
+import { getEmployees } from './API/APICalls';
 
 
 const App = () => {
