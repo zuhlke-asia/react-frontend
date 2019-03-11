@@ -16,7 +16,7 @@ instance.interceptors.request.use((config) => {
   config.baseURL = url;
   return config; }, function (error) {
   // Do something with request error
-    return Promise.reject(error);
+  return Promise.reject(error);
 });
 
 export default instance;

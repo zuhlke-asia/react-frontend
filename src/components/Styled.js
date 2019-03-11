@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from 'semantic-ui-react';
 
 /* eslint-disable import/prefer-default-export */
 export const StyledCard = styled.div`
@@ -8,7 +9,7 @@ export const StyledCard = styled.div`
   border-width: 1px;
 `;
 
-export const StyledForm = styled.div`
+export const StyledForm = styled(Form)`
   padding: 20vh;
   text-align: left;
 
