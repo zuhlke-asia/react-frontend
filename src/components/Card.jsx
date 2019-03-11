@@ -1,30 +1,79 @@
 import React, { useState } from 'react';
 import {
-  Card, Icon, Modal, Button,
+  Card, Icon, Form, Modal, Button,
 } from 'semantic-ui-react';
 import { StyledButton, StyledCard } from './Styled';
-import { deleteEmployee } from '../API/APICalls';
+import { deleteEmployee, editEmployee } from '../API/APICalls';
 
 const EmployeeCard = (props) => {
   const { person, refresh } = props;
   const {
     id, firstName, lastName, address, email, phone,
   } = person;
-  const [open, setOpen] = useState(false);
 
-  const showModal = () => {
-    setOpen(true);
+  // Form properties
+  const [newFirstName, setNewFirstName] = useState(firstName);
+  const [newLastName, setNewLastName] = useState(lastName);
+  const [newAddress, setNewAddress] = useState(address);
+  const [newEmail, setNewEmail] = useState(email);
+  const [newPhone, setNewPhone] = useState(phone);
+
+  const mapper = {
+    firstName: setNewFirstName,
+    lastName: setNewLastName,
+    address: setNewAddress,
+    email: setNewEmail,
+    phone: setNewPhone,
   };
 
-  const closeModal = () => {
-    setOpen(false);
+  // Modal
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+
+  const showDeleteModal = () => {
+    setDeleteOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteOpen(false);
   };
 
   const handleDelete = async () => {
     await deleteEmployee(id).then(() => {
-      closeModal();
+      closeDeleteModal();
       refresh();
     });
+  };
+
+  const showEditModal = () => {
+    setEditOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setEditOpen(false);
+    setNewFirstName(firstName);
+    setNewLastName(lastName);
+    setNewAddress(address);
+    setNewEmail(email);
+    setNewPhone(phone);
+  };
+
+  const handleEdit = async () => {
+    await editEmployee(id, {
+      firstName: newFirstName,
+      lastName: newLastName,
+      address: newAddress,
+      email: newEmail,
+      phone: newPhone,
+    }).then(() => {
+      closeEditModal();
+      refresh();
+    });
+  };
+
+  const inputHandler = (evt, obj) => {
+    const { value } = obj;
+    mapper[evt.target.name](value);
   };
 
   return (
@@ -33,8 +82,11 @@ const EmployeeCard = (props) => {
         <Card.Content>
           <Card.Header>
             {`${firstName} ${lastName}`}
-            <StyledButton icon onClick={showModal}>
+            <StyledButton icon onClick={showDeleteModal}>
               <Icon name="trash alternate outline" />
+            </StyledButton>
+            <StyledButton icon onClick={showEditModal}>
+              <Icon name="pencil alternate" />
             </StyledButton>
           </Card.Header>
           <Card.Description>
@@ -53,7 +105,78 @@ const EmployeeCard = (props) => {
           </Card.Description>
         </Card.Content>
       </Card>
-      <Modal size="mini" open={open} onClose={closeModal} dimmer="blurring">
+      <Modal size="mini" open={editOpen} onClose={closeEditModal} dimmer="blurring">
+        <Modal.Header>
+          Edit
+          {' '}
+          {firstName}
+          {' '}
+          {lastName}
+        </Modal.Header>
+        <Modal.Content>
+          <Form>
+            <Form.Field>
+              <Form.Input
+                fluid
+                label="First name"
+                name="firstName"
+                value={newFirstName}
+                onChange={inputHandler}
+                placeholder="First name"
+              />
+              <Form.Input
+                fluid
+                label="Last name"
+                name="lastName"
+                value={newLastName}
+                onChange={inputHandler}
+                placeholder="Last name"
+              />
+            </Form.Field>
+            <Form.Field>
+              <Form.Input
+                fluid
+                label="Address"
+                name="address"
+                value={newAddress}
+                onChange={inputHandler}
+                placeholder="Address"
+              />
+            </Form.Field>
+            <Form.Field>
+              <Form.Input
+                label="Email Address"
+                name="emailInput"
+                value={newEmail}
+                onChange={inputHandler}
+                placeholder="Email Address"
+              />
+            </Form.Field>
+            <Form.Field>
+              <Form.Input
+                label="Phone Number"
+                name="phone"
+                value={newPhone}
+                onChange={inputHandler}
+                placeholder="Phone Number"
+              />
+            </Form.Field>
+          </Form>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button negative onClick={closeEditModal}>
+            Cancel
+          </Button>
+          <Button
+            positive
+            onClick={handleEdit}
+            icon="checkmark"
+            labelPosition="right"
+            content="Submit"
+          />
+        </Modal.Actions>
+      </Modal>
+      <Modal size="mini" open={deleteOpen} onClose={closeDeleteModal} dimmer="blurring">
         <Modal.Header>
           Delete
           {' '}
@@ -65,7 +188,7 @@ const EmployeeCard = (props) => {
           <p>Are you sure you want to delete this card?</p>
         </Modal.Content>
         <Modal.Actions>
-          <Button negative onClick={closeModal}>
+          <Button negative onClick={closeDeleteModal}>
             No
           </Button>
           <Button
