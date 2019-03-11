@@ -1,12 +1,9 @@
 import apiWrapper from './apiwrapper';
 
-const getEmployees = apiWrapper.get('/employee');
+export const getEmployees = () => apiWrapper.get('/api/employee');
 
-export { getEmployees };
+export const getEmployee = employeeId => apiWrapper.get(`/api/employee/${employeeId}`);
 
+export const addEmployee = employee => apiWrapper.post('/api/employee', employee);
 
-const addEmployee = (employee) => {
-  apiWrapper.post('/employee', employee);
-};
-
-export { addEmployee };
+export const deleteEmployee = employeeId => apiWrapper.delete(`/api/employee/${employeeId}`);
