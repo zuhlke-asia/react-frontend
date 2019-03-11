@@ -55,7 +55,7 @@ const App = () => {
     addEmployee(employee)
       .then((res) => {
         console.log('/addEmployee:', res);
-        fetch('/api/employee')
+        fetch('https://employee-profiles-client.herokuapp.com/api/employee')
           .then(res2 => res2.json())
           .then((json) => {
             console.log('fetch employees:', json);
@@ -81,8 +81,6 @@ const App = () => {
       <Divider horizontal>Employees</Divider>
       <Card.Group>
         {persons.map((person) => {
-          console.log('person');
-          console.log(person);
           return <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />;
         })}
       </Card.Group>
