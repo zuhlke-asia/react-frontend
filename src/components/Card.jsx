@@ -6,7 +6,7 @@ import { StyledButton, StyledCard } from './Styled';
 import { deleteEmployee } from '../API/APICalls';
 
 const EmployeeCard = (props) => {
-  const { person } = props;
+  const { person, refresh } = props;
   const {
     id, firstName, lastName, address, email, phone,
   } = person;
@@ -21,7 +21,10 @@ const EmployeeCard = (props) => {
   };
 
   const handleDelete = async () => {
-    await deleteEmployee(id).then(() => closeModal());
+    await deleteEmployee(id).then(() => {
+      closeModal();
+      refresh();
+    });
   };
 
   return (

@@ -36,7 +36,7 @@ const App = () => {
         {persons.map((person) => {
           console.log('person');
           console.log(person);
-          return <EmployeeCard key={person.id} person={person} />;
+          return <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />;
         })}
       </Card.Group>
     </div>
