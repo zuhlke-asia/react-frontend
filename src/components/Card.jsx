@@ -1,19 +1,24 @@
 import React from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 import { StyledButton } from './Styled';
+import { deleteEmployee } from '../API/APICalls';
 
 const EmployeeCard = (props) => {
   const { person } = props;
   const {
-    firstName, lastName, address, email, phone,
+    id, firstName, lastName, address, email, phone,
   } = person;
+
+  const handleDelete = async () => {
+    await deleteEmployee(id);
+  };
 
   return (
     <Card>
       <Card.Content>
         <Card.Header>
           {`${firstName} ${lastName}`}
-          <StyledButton icon>
+          <StyledButton icon onClick={handleDelete}>
             <Icon name="trash alternate outline" />
           </StyledButton>
         </Card.Header>

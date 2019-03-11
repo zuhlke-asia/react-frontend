@@ -3,16 +3,14 @@ import { Divider, CardGroup } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import Form from './components/Form';
 import logo from './logo.svg';
-import apiWrapper from './apiwrapper';
 import './App.css';
 import { getEmployees } from './API/APICalls';
-
 
 const App = () => {
   const [persons, setPersons] = useState([]);
 
   const getAllPersons = async () => {
-    await getEmployees
+    await getEmployees()
       .then((res) => {
         console.log(res.data);
         setPersons(res.data.content);
@@ -23,7 +21,9 @@ const App = () => {
       });
   };
 
-  useEffect(() => { getAllPersons(); }, []);
+  useEffect(() => {
+    getAllPersons();
+  }, []);
 
   return (
     <div className="App">
@@ -33,18 +33,12 @@ const App = () => {
       <Form />
       <Divider horizontal>Employees</Divider>
       <CardGroup>
-        {
-          persons.map((person) => {
-            console.log('person');
-            console.log(person);
-            return (
-              <EmployeeCard key={person.id} person={person} />
-            );
-          })
-        }
-
+        {persons.map((person) => {
+          console.log('person');
+          console.log(person);
+          return <EmployeeCard key={person.id} person={person} />;
+        })}
       </CardGroup>
-
     </div>
   );
 };
