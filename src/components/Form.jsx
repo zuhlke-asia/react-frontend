@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup } from 'semantic-ui-react';
 import { StyledForm } from './Styled';
-import apiWrapper from '../apiwrapper';
+import apiWrapper from '../API/apiwrapper';
 
 const EmployeeForm = () => {
   const [fn, setfn] = useState('');
