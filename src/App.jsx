@@ -79,7 +79,6 @@ const App = () => {
       </header>
       <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
       <Divider horizontal>Employees</Divider>
-
       <Card.Group>
         {persons.map((person) => {
           console.log('person');
