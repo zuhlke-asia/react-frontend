@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Divider, CardGroup } from 'semantic-ui-react';
+import { Card, Divider } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import Form from './components/Form';
 import logo from './logo.svg';
@@ -32,13 +32,13 @@ const App = () => {
       </header>
       <Form />
       <Divider horizontal>Employees</Divider>
-      <CardGroup>
+      <Card.Group>
         {persons.map((person) => {
           console.log('person');
           console.log(person);
-          return <EmployeeCard key={person.id} person={person} />;
+          return <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />;
         })}
-      </CardGroup>
+      </Card.Group>
     </div>
   );
 };
