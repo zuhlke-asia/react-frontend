@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const getAllPersons = () => {
-    getEmployees
+    getEmployees()
       .then((res) => {
         console.log('/getEmployee response:', res.data);
         setPersons(res.data.content);
