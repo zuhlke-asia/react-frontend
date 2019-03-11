@@ -12,3 +12,10 @@ module.exports = (app) => {
     changeOrigin: true,
   }));
 };
+
+module.exports = (app) => {
+  app.use(proxy(filter, {
+    target: 'https://employee-profiles.herokuapp.com/',
+    changeOrigin: true,
+  }));
+};
