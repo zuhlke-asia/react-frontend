@@ -1,16 +1,9 @@
-import apiWrapper from './apiwrapper';
+import instance from './apiwrapper';
 
+export const getEmployees = () => instance.get('/api/employee');
 
-const getEmployees = apiWrapper.get('/api/employee/');
-export { getEmployees };
+export const getEmployee = employeeId => instance.get(`/api/employee/${employeeId}`);
 
-const addEmployee = (employee) => { 
-  return apiWrapper.post('/api/employee', employee,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-};
+export const addEmployee = employee => instance.post('/api/employee', employee);
 
-export { addEmployee };
+export const deleteEmployee = employeeId => instance.delete(`/api/employee/${employeeId}`);

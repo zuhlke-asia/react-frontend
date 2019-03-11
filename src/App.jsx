@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Divider, CardGroup } from 'semantic-ui-react';
+import { Card, Divider } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import EmployeeForm from './components/EmployeeForm';
 import logo from './logo.svg';
@@ -67,7 +67,9 @@ const App = () => {
       });
   };
 
-  useEffect(() => { getAllPersons(); }, []);
+  useEffect(() => {
+    getAllPersons();
+  }, []);
 
 
   return (
@@ -77,17 +79,14 @@ const App = () => {
       </header>
       <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
       <Divider horizontal>Employees</Divider>
-      <CardGroup>
-        {
-          persons.map((person) => {
-            return (
-              <EmployeeCard key={person.id} person={person} />
-            );
-          })
-        }
 
-      </CardGroup>
-
+      <Card.Group>
+        {persons.map((person) => {
+          console.log('person');
+          console.log(person);
+          return <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />;
+        })}
+      </Card.Group>
     </div>
   );
 };
