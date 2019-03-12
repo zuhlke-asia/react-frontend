@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Divider } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import EmployeeForm from './components/EmployeeForm';
+import Message from './components/SuccessMessage';
 import logo from './logo.svg';
 import './App.css';
 import { getEmployees, addEmployee } from './API/APICalls';
@@ -14,6 +15,7 @@ const App = () => {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [state, setState] = useState(false);
 
 
   const mapper = {
@@ -55,12 +57,10 @@ const App = () => {
     addEmployee(employee)
       .then((res) => {
         console.log('/addEmployee:', res);
-        fetch('/api/employee')
-          .then(res2 => res2.json())
-          .then((json) => {
-            console.log('fetch employees:', json);
-            setPersons(json.content);
-          });
+        persons.push(res.data);
+        setPersons(persons);
+        console.log('push persons: ', persons);
+        setState(true);
       })
       .catch((error) => {
         console.log(error);
@@ -77,12 +77,11 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <Message state={state} setState={setState} />
       <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
       <Divider horizontal>Employees</Divider>
       <Card.Group>
         {persons.map((person) => {
-          console.log('person');
-          console.log(person);
           return <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />;
         })}
       </Card.Group>
