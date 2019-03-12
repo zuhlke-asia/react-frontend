@@ -1,6 +1,6 @@
 import instance from './apiwrapper';
 
-export const getEmployees = () => instance.get('/api/employee');
+export const getEmployees = (sort, direction) => instance.get('/api/employee', { params: { sort: `${sort},${direction}` } });
 
 export const getEmployee = employeeId => instance.get(`/api/employee/${employeeId}`);
 
