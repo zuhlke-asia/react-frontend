@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Card, Icon, Form, Modal, Button,
+  Card, Icon, Modal, Button,
 } from 'semantic-ui-react';
 import EmployeeForm from './EmployeeForm';
 import { StyledButton, StyledCard } from './Styled';
