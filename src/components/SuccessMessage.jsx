@@ -10,7 +10,7 @@ const Message = (props) => {
 
   switch (actionType) {
     case 'add':
-      msgContent = 'You added a new employee';
+      msgContent = 'You have successfully added an employee';
       break;
 
     case 'edit':
