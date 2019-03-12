@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Card, Icon, Form, Modal, Button,
 } from 'semantic-ui-react';
+import EmployeeForm from './EmployeeForm';
 import { StyledButton, StyledCard } from './Styled';
 import { deleteEmployee, editEmployee } from '../API/APICalls';
 
@@ -12,18 +13,23 @@ const EmployeeCard = (props) => {
   } = person;
 
   // Form properties
-  const [newFirstName, setNewFirstName] = useState(firstName);
-  const [newLastName, setNewLastName] = useState(lastName);
-  const [newAddress, setNewAddress] = useState(address);
-  const [newEmail, setNewEmail] = useState(email);
-  const [newPhone, setNewPhone] = useState(phone);
+  const [fn, setNewFirstName] = useState(firstName);
+  const [ln, setNewLastName] = useState(lastName);
+  const [add, setNewAddress] = useState(address);
+  const [emailAdd, setNewEmail] = useState(email);
+  const [phoneNum, setNewPhone] = useState(phone);
+  const formType = 'edit';
+
+  const newPerson = {
+    fn, ln, add, emailAdd, phoneNum,
+  };
 
   const mapper = {
-    firstName: setNewFirstName,
-    lastName: setNewLastName,
-    address: setNewAddress,
-    email: setNewEmail,
-    phone: setNewPhone,
+    fnInput: setNewFirstName,
+    lnInput: setNewLastName,
+    addInput: setNewAddress,
+    emailInput: setNewEmail,
+    phoneInput: setNewPhone,
   };
 
   // Modal
@@ -60,11 +66,11 @@ const EmployeeCard = (props) => {
 
   const handleEdit = async () => {
     await editEmployee(id, {
-      firstName: newFirstName,
-      lastName: newLastName,
-      address: newAddress,
-      email: newEmail,
-      phone: newPhone,
+      firstName: fn,
+      lastName: ln,
+      address: add,
+      email: emailAdd,
+      phone: phoneNum,
     }).then(() => {
       closeEditModal();
       refresh();
@@ -105,7 +111,7 @@ const EmployeeCard = (props) => {
           </Card.Description>
         </Card.Content>
       </Card>
-      <Modal size="mini" open={editOpen} onClose={closeEditModal} dimmer="blurring">
+      <Modal open={editOpen} onClose={closeEditModal} dimmer="blurring">
         <Modal.Header>
           Edit
           {' '}
@@ -114,54 +120,14 @@ const EmployeeCard = (props) => {
           {lastName}
         </Modal.Header>
         <Modal.Content>
-          <Form>
-            <Form.Field>
-              <Form.Input
-                fluid
-                label="First name"
-                name="firstName"
-                value={newFirstName}
-                onChange={inputHandler}
-                placeholder="First name"
+          {
+            <EmployeeForm
+              employee={newPerson}
+              handleSubmit={handleEdit}
+              inputHandler={inputHandler}
+              formType = {formType}
               />
-              <Form.Input
-                fluid
-                label="Last name"
-                name="lastName"
-                value={newLastName}
-                onChange={inputHandler}
-                placeholder="Last name"
-              />
-            </Form.Field>
-            <Form.Field>
-              <Form.Input
-                fluid
-                label="Address"
-                name="address"
-                value={newAddress}
-                onChange={inputHandler}
-                placeholder="Address"
-              />
-            </Form.Field>
-            <Form.Field>
-              <Form.Input
-                label="Email Address"
-                name="emailInput"
-                value={newEmail}
-                onChange={inputHandler}
-                placeholder="Email Address"
-              />
-            </Form.Field>
-            <Form.Field>
-              <Form.Input
-                label="Phone Number"
-                name="phone"
-                value={newPhone}
-                onChange={inputHandler}
-                placeholder="Phone Number"
-              />
-            </Form.Field>
-          </Form>
+            }
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={closeEditModal}>

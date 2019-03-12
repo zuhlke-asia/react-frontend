@@ -9,14 +9,16 @@ import { getEmployees, addEmployee } from './API/APICalls';
 
 
 const App = () => {
+  const [state, setState] = useState(false);
+
+  // add new employee form attributes
   const [persons, setPersons] = useState([]);
   const [firstName, setfn] = useState('');
   const [lastName, setln] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [state, setState] = useState(false);
-
+  const formType = 'new';
 
   const mapper = {
     fnInput: setfn,
@@ -78,7 +80,8 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Message state={state} setState={setState} />
-      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
+      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} 
+        formType={formType} />
       <Divider horizontal>Employees</Divider>
       <Card.Group>
         {persons.map((person) => {
