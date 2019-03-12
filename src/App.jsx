@@ -17,6 +17,7 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const formType = 'new';
+
   // property for SuccessMessage component
   const [state, setState] = useState(false);
   const [actionType, setActionType] = useState('');
