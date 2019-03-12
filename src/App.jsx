@@ -15,7 +15,7 @@ const App = () => {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [state, setState] = useState(true);
+  const [state, setState] = useState(false);
 
 
   const mapper = {
