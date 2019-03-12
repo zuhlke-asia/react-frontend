@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Divider } from 'semantic-ui-react';
+import { Card, Divider, Pagination } from 'semantic-ui-react';
 import EmployeeCard from './components/Card';
 import EmployeeForm from './components/EmployeeForm';
 import Message from './components/SuccessMessage';
@@ -7,6 +7,7 @@ import logo from './logo.svg';
 import './App.css';
 import { getEmployees, addEmployee } from './API/APICalls';
 import Sort from './components/Sort';
+import { CentredDiv } from './components/Styled';
 
 const App = () => {
   // add new employee form attributes
@@ -21,6 +22,9 @@ const App = () => {
   // property for SuccessMessage component
   const [state, setState] = useState(false);
   const [actionType, setActionType] = useState('');
+
+  // State hooks for pagination
+  const [totalPages, setTotalPages] = useState(0);
 
   const mapper = {
     fnInput: setfn,
@@ -43,10 +47,11 @@ const App = () => {
     mapper[evt.target.name](value);
   };
 
-  const getAllPersons = (sort = 'createdAt', direction = 'asc') => getEmployees(sort, direction)
+  const getAllPersons = (page = 0, sort = 'createdAt', direction = 'asc') => getEmployees(page, sort, direction)
     .then((res) => {
       console.log('/getEmployee response:', res.data);
       setPersons(res.data.content);
+      setTotalPages(res.data.totalPages);
     })
     .catch((error) => {
       setPersons([]);
@@ -70,6 +75,10 @@ const App = () => {
       });
   };
 
+  const handlePageChange = (event, data) => {
+    getAllPersons(data.activePage - 1);
+  };
+
   useEffect(() => {
     getAllPersons();
   }, []);
@@ -89,6 +98,9 @@ const App = () => {
           <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />
         ))}
       </Card.Group>
+      <CentredDiv>
+        <Pagination defaultActivePage={1} onPageChange={handlePageChange} totalPages={totalPages} />
+      </CentredDiv>
     </div>
   );
 };
