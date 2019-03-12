@@ -3,9 +3,28 @@ import { TransitionablePortal, Header, Icon } from 'semantic-ui-react';
 import { StyledSegment } from './Styled';
 
 const Message = (props) => {
-  const { state, setState } = props;
+  const { state, setState, actionType } = props;
   const handleOpen = () => { setState(true); };
   const handleClose = () => { setState(false); };
+  let msgContent = '';
+
+  switch (actionType) {
+    case 'add':
+      msgContent = 'You have successfully added an employee';
+      break;
+
+    case 'edit':
+      msgContent = 'Employee details edited';
+      break;
+
+    case 'delete':
+      msgContent = 'You deleted an employee\'s details';
+      break;
+
+    default:
+      msgContent = 'default message';
+      break;
+  }
 
   return (
     <TransitionablePortal
@@ -21,7 +40,7 @@ const Message = (props) => {
           <Icon name="check" />
         </Header>
         <p>
-          You have successfully added an employee
+          {msgContent}
         </p>
         <p className="footer">To close, simply click away</p>
       </StyledSegment>

@@ -1,0 +1,68 @@
+{
+    "content": [{
+            "createdAt": "2019-03-08T02:51:36.260+0000",
+            "updatedAt": "2019-03-12T04:00:31.552+0000",
+            "id": 2,
+            "firstName": "Jawen",
+            "lastName": "Voon",
+            "address": "18 Ghim Moh Road",
+            "email": "jawen@gmail.com",
+            "phone": "331477"
+        },
+        {
+            "createdAt": "2019-03-12T02:28:08.360+0000",
+            "updatedAt": "2019-03-12T03:59:49.358+0000",
+            "id": 47,
+            "firstName": "Alex",
+            "lastName": "Test",
+            "address": "123 Test Road",
+            "email": "alex.test@test.com",
+            "phone": "86124523"
+        },
+        {
+            "createdAt": "2019-03-12T03:48:52.563+0000",
+            "updatedAt": "2019-03-12T08:29:54.676+0000",
+            "id": 54,
+            "firstName": "Bobby",
+            "lastName": "Test",
+            "address": "123 Test Road",
+            "email": "test@test.com",
+            "phone": "12345678"
+        },
+        {
+            "createdAt": "2019-03-12T07:03:56.711+0000",
+            "updatedAt": "2019-03-12T07:03:56.711+0000",
+            "id": 55,
+            "firstName": "Nathan",
+            "lastName": "Khoo",
+            "address": "51 Mount Sinai Drive",
+            "email": "natebakescakes@gmail.com",
+            "phone": "91253620"
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "sorted": true,
+            "unsorted": false,
+            "empty": false
+        },
+        "pageSize": 20,
+        "pageNumber": 0,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "totalPages": 1,
+    "totalElements": 4,
+    "last": true,
+    "first": true,
+    "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+    },
+    "numberOfElements": 4,
+    "size": 20,
+    "number": 0,
+    "empty": false
+}

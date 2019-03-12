@@ -14,8 +14,8 @@ const EmployeeForm = (props) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FormGroup inline widths="equal">
-        <Form.Input fluid label="First Name" name="fnInput" value={fn} onChange={inputHandler} placeholder="First name" />
-        <Form.Input fluid label="Last Name" name="lnInput" value={ln} onChange={inputHandler} placeholder="Last name" />
+        <Form.Input fluid label="First Name" name="fnInput" value={fn} onChange={inputHandler} placeholder="First Name" />
+        <Form.Input fluid label="Last Name" name="lnInput" value={ln} onChange={inputHandler} placeholder="Last Name" />
       </FormGroup>
       <Form.Field>
         <Form.Input fluid label="Address" name="addInput" value={add} onChange={inputHandler} placeholder="Address" />
@@ -26,8 +26,7 @@ const EmployeeForm = (props) => {
       </FormGroup>
       {formType === 'new' &&
       <input type="submit" value="Submit" className="ui button fluid" />
-
-    }
+      }
     </StyledForm>
   );
 };

@@ -3,6 +3,7 @@ import {
   Card, Icon, Modal, Button,
 } from 'semantic-ui-react';
 import EmployeeForm from './EmployeeForm';
+import Message from './SuccessMessage';
 import { StyledButton, StyledCard } from './Styled';
 import { deleteEmployee, editEmployee } from '../API/APICalls';
 
@@ -23,6 +24,10 @@ const EmployeeCard = (props) => {
   const newPerson = {
     fn, ln, add, emailAdd, phoneNum,
   };
+
+  // property for SuccessMessage component
+  const [state, setState] = useState(false);
+  const [actionType, setActionType] = useState('');
 
   const mapper = {
     fnInput: setNewFirstName,
@@ -45,9 +50,11 @@ const EmployeeCard = (props) => {
   };
 
   const handleDelete = async () => {
+    setActionType('delete');
     await deleteEmployee(id).then(() => {
       closeDeleteModal();
       refresh();
+      setState(true);
     });
   };
 
@@ -65,6 +72,7 @@ const EmployeeCard = (props) => {
   };
 
   const handleEdit = async () => {
+    setActionType('edit');
     await editEmployee(id, {
       firstName: fn,
       lastName: ln,
@@ -73,6 +81,7 @@ const EmployeeCard = (props) => {
       phone: phoneNum,
     }).then(() => {
       closeEditModal();
+      setState(true);
       refresh();
     });
   };
@@ -84,6 +93,7 @@ const EmployeeCard = (props) => {
 
   return (
     <StyledCard>
+      <Message state={state} setState={setState} actionType={actionType} />
       <Card>
         <Card.Content>
           <Card.Header>
@@ -125,7 +135,7 @@ const EmployeeCard = (props) => {
               employee={newPerson}
               handleSubmit={handleEdit}
               inputHandler={inputHandler}
-              formType = {formType}
+              formType={formType}
               />
             }
         </Modal.Content>
