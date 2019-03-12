@@ -80,7 +80,10 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Message state={state} setState={setState} />
-      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} 
+      <EmployeeForm
+        handleSubmit={handleSubmit}
+        employee={employee}
+        inputHandler={inputHandler}
         formType={formType} />
       <Divider horizontal>Employees</Divider>
       <Card.Group>
