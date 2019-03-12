@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Card, Icon, Form, Modal, Button,
 } from 'semantic-ui-react';
+import Message from './SuccessMessage';
 import { StyledButton, StyledCard } from './Styled';
 import { deleteEmployee, editEmployee } from '../API/APICalls';
 
@@ -17,6 +18,10 @@ const EmployeeCard = (props) => {
   const [newAddress, setNewAddress] = useState(address);
   const [newEmail, setNewEmail] = useState(email);
   const [newPhone, setNewPhone] = useState(phone);
+
+  // property for SuccessMessage component
+  const [state, setState] = useState(false);
+  const [actionType, setActionType] = useState('');
 
   const mapper = {
     firstName: setNewFirstName,
@@ -39,9 +44,11 @@ const EmployeeCard = (props) => {
   };
 
   const handleDelete = async () => {
+    setActionType('delete');
     await deleteEmployee(id).then(() => {
       closeDeleteModal();
       refresh();
+      setState(true);
     });
   };
 
@@ -59,6 +66,7 @@ const EmployeeCard = (props) => {
   };
 
   const handleEdit = async () => {
+    setActionType('edit');
     await editEmployee(id, {
       firstName: newFirstName,
       lastName: newLastName,
@@ -67,6 +75,7 @@ const EmployeeCard = (props) => {
       phone: newPhone,
     }).then(() => {
       closeEditModal();
+      setState(true);
       refresh();
     });
   };
@@ -78,6 +87,7 @@ const EmployeeCard = (props) => {
 
   return (
     <StyledCard>
+      <Message state={state} setState={setState} actionType={actionType} />
       <Card>
         <Card.Content>
           <Card.Header>

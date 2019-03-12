@@ -15,7 +15,11 @@ const App = () => {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+
+
+  // property for SuccessMessage component
   const [state, setState] = useState(false);
+  const [actionType, setActionType] = useState('');
 
 
   const mapper = {
@@ -53,6 +57,7 @@ const App = () => {
 
   const handleSubmit = () => {
     console.log('in submit:', employee);
+    setActionType('add');
 
     addEmployee(employee)
       .then((res) => {
@@ -77,7 +82,7 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Message state={state} setState={setState} />
+      <Message state={state} setState={setState} actionType={actionType} />
       <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
       <Divider horizontal>Employees</Divider>
       <Card.Group>
