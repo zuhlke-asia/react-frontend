@@ -8,7 +8,7 @@ const EmployeeForm = (props) => {
   const { fn, ln, add, emailAdd, phoneNum } = employee;
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit} id="new-employee">
       <FormGroup inline widths="equal">
         <Form.Input fluid label="First name" name="fnInput" value={fn} onChange={inputHandler} placeholder="First name" />
         <Form.Input fluid label="Last name" name="lnInput" value={ln} onChange={inputHandler} placeholder="Last name" />
