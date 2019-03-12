@@ -1,6 +1,6 @@
-describe('Home Page Renders', () => {
-  it('Visits Employee Profile', () => {
-    cy.visit('localhost:3000');
+describe('Can add employee', () => {
+  before(() => {
+    cy.visit('http://localhost:3000');
   });
 
   it('First Name can be typed', () => {
@@ -34,8 +34,25 @@ describe('Home Page Renders', () => {
   });
 
   it('Submit button is visible', () => {
-    cy.get('input')
+    cy.get('input[type="submit"]')
       .contains('Submit')
       .should('be.visible');
+  });
+
+  it('Form is submitted', () => {
+    cy.server();
+    cy.fixture('employee.json').as('employeeJson');
+    cy.route('POST', 'api/employee', '@employeeJson').as('postEmployee');
+    cy.get('form[id="new-employee"]').submit();
+
+    cy.wait('@postEmployee')
+      .its('requestBody')
+      .should('have.property', 'firstName', 'Alex');
+
+    cy.get('#new-employee').submit();
+
+    cy.wait('@postEmployee')
+      .its('responseBody')
+      .should('have.property', 'lastName', 'Test');
   });
 });

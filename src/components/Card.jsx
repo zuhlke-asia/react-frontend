@@ -114,7 +114,7 @@ const EmployeeCard = (props) => {
           {lastName}
         </Modal.Header>
         <Modal.Content>
-          <Form>
+          <Form id="edit-employee">
             <Form.Field>
               <Form.Input
                 fluid
@@ -146,7 +146,7 @@ const EmployeeCard = (props) => {
             <Form.Field>
               <Form.Input
                 label="Email Address"
-                name="emailInput"
+                name="email"
                 value={newEmail}
                 onChange={inputHandler}
                 placeholder="Email Address"
