@@ -4,13 +4,13 @@ describe('Home Page Renders', () => {
   });
 
   it('First Name can be typed', () => {
-    cy.get('[placeholder="First name"]')
+    cy.get('[placeholder="First Name"]')
       .type('Alex')
       .should('have.value', 'Alex');
   });
 
   it('Last Name can be typed', () => {
-    cy.get('[placeholder="Last name"]')
+    cy.get('[placeholder="Last Name"]')
       .type('Test')
       .should('have.value', 'Test');
   });

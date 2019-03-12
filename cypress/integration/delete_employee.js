@@ -5,8 +5,8 @@ describe('Can delete employee card', () => {
     cy.server();
     cy.fixture('employee.json').as('employeeJson');
     cy.route('POST', 'employee', '@employeeJson');
-    cy.get('[placeholder="First name"]').type('Alex');
-    cy.get('[placeholder="Last name"]').type('Test');
+    cy.get('[placeholder="First Name"]').type('Alex');
+    cy.get('[placeholder="Last Name"]').type('Test');
     cy.get('[placeholder="Address"]').type('123 Test Road');
     cy.get('[placeholder="Email Address"]').type('test@test.com');
     cy.get('[placeholder="Phone Number"]').type('123456789');
