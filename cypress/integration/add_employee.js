@@ -1,6 +1,6 @@
 describe('Can add employee', () => {
-  it('Visits Employee Profile', () => {
-    cy.visit('localhost:3000');
+  before(() => {
+    cy.visit('http://localhost:3000');
   });
 
   it('First Name can be typed', () => {
@@ -42,14 +42,14 @@ describe('Can add employee', () => {
   it('Form is submitted', () => {
     cy.server();
     cy.fixture('employee.json').as('employeeJson');
-    cy.route('POST', 'employee', '@employeeJson').as('postEmployee');
+    cy.route('POST', 'api/employee', '@employeeJson').as('postEmployee');
     cy.get('form[id="new-employee"]').submit();
 
     cy.wait('@postEmployee')
       .its('requestBody')
       .should('have.property', 'firstName', 'Alex');
 
-    cy.get('form[id="new-employee"]').submit();
+    cy.get('#new-employee').submit();
 
     cy.wait('@postEmployee')
       .its('responseBody')

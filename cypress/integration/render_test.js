@@ -1,6 +1,6 @@
 describe('Home Page Renders', () => {
-  it('Visits Employee Profile', () => {
-    cy.visit('localhost:3000');
+  before(() => {
+    cy.visit('http://localhost:3000');
   });
 
   it('First Name can be typed', () => {
