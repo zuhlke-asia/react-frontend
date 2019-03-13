@@ -8,6 +8,7 @@ import './App.css';
 import { getEmployees, addEmployee } from './API/APICalls';
 import Sort from './components/Sort';
 import { CentredDiv } from './components/Styled';
+import PlaceholderCard from './components/PlaceholderCard';
 
 const App = () => {
   // add new employee form attributes
@@ -47,16 +48,19 @@ const App = () => {
     mapper[evt.target.name](value);
   };
 
-  const getAllPersons = (page = 0, sort = 'createdAt', direction = 'asc') => getEmployees(page, sort, direction)
-    .then((res) => {
-      console.log('/getEmployee response:', res.data);
-      setPersons(res.data.content);
-      setTotalPages(res.data.totalPages);
-    })
-    .catch((error) => {
-      setPersons([]);
-      console.log(error);
-    });
+  const getAllPersons = (page = 0, sort = 'createdAt', direction = 'asc') => {
+    setPersons([]);
+    getEmployees(page, sort, direction)
+      .then((res) => {
+        console.log('/getEmployee response:', res.data);
+        setPersons(res.data.content);
+        setTotalPages(res.data.totalPages);
+      })
+      .catch((error) => {
+        setPersons([]);
+        console.log(error);
+      });
+  };
 
   const handleSubmit = () => {
     console.log('in submit:', employee);
@@ -94,9 +98,11 @@ const App = () => {
         <Sort refresh={getAllPersons} />
       </Divider>
       <Card.Group>
-        {persons.map(person => (
-          <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />
-        ))}
+        {persons.length !== 0
+          ? persons.map(person => (
+            <EmployeeCard refresh={getAllPersons} key={person.id} person={person} />
+          ))
+          : [...Array(16).keys()].map(() => <PlaceholderCard />)}
       </Card.Group>
       <CentredDiv>
         <Pagination defaultActivePage={1} onPageChange={handlePageChange} totalPages={totalPages} />
