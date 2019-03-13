@@ -9,13 +9,14 @@ import { getEmployees, addEmployee } from './API/APICalls';
 import Sort from './components/Sort';
 
 const App = () => {
+  // add new employee form attributes
   const [persons, setPersons] = useState([]);
   const [firstName, setfn] = useState('');
   const [lastName, setln] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
+  const formType = 'new';
 
   // property for SuccessMessage component
   const [state, setState] = useState(false);
@@ -79,7 +80,7 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Message state={state} setState={setState} actionType={actionType} />
-      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} />
+      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} formType={formType} />
       <Divider horizontal>
         <Sort refresh={getAllPersons} />
       </Divider>

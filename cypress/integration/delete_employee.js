@@ -11,7 +11,7 @@ describe('Can delete employee card', () => {
     cy.get('[placeholder="Email Address"]').type('test@test.com');
     cy.get('[placeholder="Phone Number"]').type('123456789');
 
-    cy.get('form[id="new-employee"]').submit();
+    cy.get('form').submit();
     cy.contains('You have successfully added an employee');
     cy.get('.App-header').click();
   });

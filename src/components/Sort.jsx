@@ -19,8 +19,8 @@ const Sort = ({ refresh }) => {
 
   const [showSortLoading, setShowSortLoading] = useState(false);
   const [showDirectionLoading, setShowDirectionLoading] = useState(false);
-  const [currentSort, setCurrentSort] = useState(sortOptions[0].value);
-  const [currentDirection, setCurrentDirection] = useState(directionOptions[0].value);
+  const [currentSort, setCurrentSort] = useState(sortOptions[5].value);
+  const [currentDirection, setCurrentDirection] = useState(directionOptions[1].value);
 
   const handleSortChange = (event, option) => {
     setShowSortLoading(true);

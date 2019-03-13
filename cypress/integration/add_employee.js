@@ -43,13 +43,13 @@ describe('Can add employee', () => {
     cy.server();
     cy.fixture('employee.json').as('employeeJson');
     cy.route('POST', 'api/employee', '@employeeJson').as('postEmployee');
-    cy.get('form[id="new-employee"]').submit();
+    cy.get('form').submit();
 
     cy.wait('@postEmployee')
       .its('requestBody')
       .should('have.property', 'firstName', 'Alex');
 
-    cy.get('#new-employee').submit();
+    cy.get('form').submit();
 
     cy.wait('@postEmployee')
       .its('responseBody')
