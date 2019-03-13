@@ -49,7 +49,7 @@ describe('Can add employee', () => {
       .its('requestBody')
       .should('have.property', 'firstName', 'Alex');
 
-    cy.get('#new-employee').submit();
+    cy.get('form').submit();
 
     cy.wait('@postEmployee')
       .its('responseBody')

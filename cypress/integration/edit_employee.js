@@ -11,7 +11,7 @@ describe('Can edit employee', () => {
     cy.get('[placeholder="Email Address"]').type('test@test.com');
     cy.get('[placeholder="Phone Number"]').type('123456789');
 
-    cy.get('form[id="new-employee"]').submit();
+    cy.get('form').submit();
     cy.contains('You have successfully added an employee');
     cy.get('.App-header').click();
     cy.get('i[class*="pencil"')
@@ -20,31 +20,41 @@ describe('Can edit employee', () => {
   });
 
   it('First Name can be typed', () => {
-    cy.get('input[name="firstName"]')
+    cy.get('input[name="fnInput"]')
+      .eq(1)
+      .clear()
       .type('Alex')
       .should('have', 'Alex');
   });
 
   it('Last Name can be typed', () => {
-    cy.get('input[name="lastName"]')
+    cy.get('input[name="lnInput"]')
+      .eq(1)
+      .clear()
       .type('Test')
       .should('have', 'Test');
   });
 
   it('Address can be typed', () => {
-    cy.get('input[name="address"]')
+    cy.get('input[name="addInput"]')
+      .eq(1)
+      .clear()
       .type('123 Test Road')
       .should('have', '123 Test Road');
   });
 
   it('Email can be typed', () => {
-    cy.get('input[name="email"]')
+    cy.get('input[name="emailInput"]')
+      .eq(1)
+      .clear()
       .type('test@test.com')
       .should('have', 'test@test.com');
   });
 
   it('Phone can be typed', () => {
-    cy.get('input[name="phone"]')
+    cy.get('input[name="phoneInput"]')
+      .eq(1)
+      .clear()
       .type('123456789')
       .should('have', '123456789');
   });
@@ -60,11 +70,11 @@ describe('Can edit employee', () => {
     cy.fixture('employee.json').as('employeeJson');
     cy.route('PUT', 'api/employee/*', '@employeeJson').as('putEmployee');
 
-    cy.get('input[name="firstName"]').then(($input) => {
+    cy.get('input[name="fnInput"]').then(($input) => {
       cy.get('button[class*="ui icon positive right labeled button"]').click();
       cy.wait('@putEmployee')
         .its('requestBody')
-        .should('have.property', 'firstName', $input[0].defaultValue);
+        .should('have.property', 'firstName', $input[1].defaultValue);
     });
   });
 });

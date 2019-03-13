@@ -80,7 +80,7 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Message state={state} setState={setState} actionType={actionType} />
-      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} formType = {formType} />
+      <EmployeeForm handleSubmit={handleSubmit} employee={employee} inputHandler={inputHandler} formType={formType} />
       <Divider horizontal>
         <Sort refresh={getAllPersons} />
       </Divider>
