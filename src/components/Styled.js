@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import {
-  Form, Button, Segment,
+  Form,
+  Button,
+  Segment,
 } from 'semantic-ui-react';
 
 /* eslint-disable import/prefer-default-export */
@@ -37,4 +39,9 @@ export const StyledSegment = styled(Segment)`
     color: grey;
     font-style: italic;
   }
+`;
+
+export const CentredDiv = styled.div`
+    text-align: center;
+    padding: 10px;
 `;
